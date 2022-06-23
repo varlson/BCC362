@@ -62,9 +62,9 @@ def main(server_state, port, host):
 
 
 threading.Thread(target=managment_starter).start()
-# port = int(sys.argv[1])
-# server = int(sys.argv[2])
-# host = sys.argv[3]
+port = int(sys.argv[1])
+server = int(sys.argv[2])
+host = sys.argv[3]
 
-main(1, 8085, '172.31.85.58') # sevidor primario, porta, host
-# main(server, port, host) 
+# main(1, 8085, '172.31.85.58') # sevidor primario, porta, host
+main(server, port, host) 

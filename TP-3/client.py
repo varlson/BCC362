@@ -16,12 +16,11 @@ CURRENT_PRIMARY_PORT = 8085
 CURRENT_SECONDARY_PORT = 8086
 
 
-def main(username, port):
+def main(username, port, host):
     global CONTROL
     global FAILURE_TREATMENT
     global REQ_COMPLETED
     CONTROL = True
-    host = 'localhost'
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
@@ -69,7 +68,7 @@ def main(username, port):
         lock.release()
     REQ_COMPLETED = True
     FAILURE_TREATMENT = True
-    main(USERNAME, CURRENT_SECONDARY_PORT)
+    main(USERNAME, CURRENT_SECONDARY_PORT, '3.87.26.44')
 
 
 
@@ -140,5 +139,6 @@ if __name__ == '__main__':
     USERNAME = None
     USERNAME= sys.argv[1]
     port = int(sys.argv[2])
-    main('USERNAME', 8085)
+    host = sys.argv[3]
+    main('USERNAME', 8085, host)
     # main(USERNAME, port)
