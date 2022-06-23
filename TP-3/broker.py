@@ -5,7 +5,7 @@ from utility import *
 
 
 def main(server_state, port, host):
-
+    print(f'dados {server, port, host}')
     global BROKER_STATUS
     if server_state == Server.PRIMARY.value:
         BROKER_STATUS = Server.PRIMARY 
