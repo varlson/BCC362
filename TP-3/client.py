@@ -37,8 +37,8 @@ def main(username, port, host):
         content = pickle.dumps(Checker.BROKER_CHECKER)
         client.send(content)
         [res, host, port] = pickle.loads(client.recv(1024))
-        
-        if res == 2:
+        # print(f'res {res}')
+        if res == Server.SECONDARY:
             client.close()
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             try:
