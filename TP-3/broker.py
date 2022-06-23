@@ -44,6 +44,7 @@ def main(server_state, port, host):
                 _redirec_port = 8085
                 _redirec_host = '3.84.150.189'
             else:
+                print('redirecting')
                 _redirec_port = 8086
                 _redirec_host = '3.87.26.44'
             
