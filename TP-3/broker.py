@@ -17,9 +17,9 @@ def main(server_state, port, host):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         print(f'dados {host, port}')
-        server.bind(('172.31.95.243', 8086))
-        server.listen()
-        print(f'Server online on port {port}')
+        # server.bind(('172.31.95.243', 8086))
+        # server.listen()
+        # print(f'Server online on port {port}')
     except socket.error as e:
         return print(f'Houve prolema na conexao {e}')
         
