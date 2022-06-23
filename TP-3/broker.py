@@ -26,7 +26,7 @@ def main(server_state, port=8080):
         else:
             _host = HOST_2
 
-        server.bind((_host, port))
+        server.bind((HOST_2, 8086))
         server.listen()
         print(f'Server online on port {port}')
     except socket.error as e:
