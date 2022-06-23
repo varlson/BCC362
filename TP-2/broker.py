@@ -18,7 +18,7 @@ Requests =[]
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        server.bind(('localhost', 3333))
+        server.bind(('172.31.85.58', 8085))
         server.listen()
         print('Server online ')
     except Exception as e:

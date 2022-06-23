@@ -17,9 +17,9 @@ lock = threading.Lock()
 def main(username):
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    port = '172.31.85.58'
+    port = '3.84.150.189'
     try:
-        client.connect((port, 3333))
+        client.connect((port, 8085))
     except Exception as e:
         return print(f'Houve problema na tentatia de conexao {e}')
     
