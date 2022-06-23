@@ -20,8 +20,8 @@ def main(username):
     port = '3.84.150.189'
     try:
         client.connect((port, 3333))
-    except:
-        return print('Houve problema na tentatia de conexao')
+    except Exception as e:
+        return print(f'Houve problema na tentatia de conexao {e}')
     
 
     # username = input('\nNome do usuario> ')
