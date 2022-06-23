@@ -41,12 +41,12 @@ def main(server_state, port, host):
             _redirec_host = ''
             
             if BROKER_STATUS == Server.PRIMARY:
-                _redirec_port = 8085
-                _redirec_host = '3.84.150.189'
-            else:
-                print('redirecting')
                 _redirec_port = 8086
                 _redirec_host = '3.87.26.44'
+            else:
+                print('redirecting')
+                _redirec_port = 8085
+                _redirec_host = '3.84.150.189'
             
             content = pickle.dumps([BROKER_STATUS, _redirec_host, _redirec_port])
             print(f'current broker {BROKER_STATUS}')
