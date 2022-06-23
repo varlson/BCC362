@@ -6,58 +6,58 @@ from utility import *
 
 def main(server_state, port, host):
     print(f'dados {server, port, host}')
-    global BROKER_STATUS
-    if server_state == Server.PRIMARY.value:
-        BROKER_STATUS = Server.PRIMARY 
-    else:
-        BROKER_STATUS = Server.SECONDARY
+    # global BROKER_STATUS
+    # if server_state == Server.PRIMARY.value:
+    #     BROKER_STATUS = Server.PRIMARY 
+    # else:
+    #     BROKER_STATUS = Server.SECONDARY
     
 
 
-    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    try:
-        server.bind((host, port))
-        server.listen()
-        print(f'Server online on port {port}')
-    except socket.error as e:
-        return print(f'Houve prolema na conexao {e}')
+    # server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # try:
+    #     server.bind((host, port))
+    #     server.listen()
+    #     print(f'Server online on port {port}')
+    # except socket.error as e:
+    #     return print(f'Houve prolema na conexao {e}')
         
-    while True:
-        client, addr = server.accept()
-        lock.acquire()
-        clients.append(client)
-        lock.release()
+    # while True:
+    #     client, addr = server.accept()
+    #     lock.acquire()
+    #     clients.append(client)
+    #     lock.release()
 
 
-        content = client.recv(1024)
-        req = pickle.loads(content)
+    #     content = client.recv(1024)
+    #     req = pickle.loads(content)
 
-        if req == Checker.CONTINUE:
-            print('Transferindo conexao')
-            thread = threading.Thread(target=messageTreatment, args=[client])
-            thread.start()
-        elif req == Checker.BROKER_CHECKER:
-            _redirec_port = ''
-            _redirec_host = ''
+    #     if req == Checker.CONTINUE:
+    #         print('Transferindo conexao')
+    #         thread = threading.Thread(target=messageTreatment, args=[client])
+    #         thread.start()
+    #     elif req == Checker.BROKER_CHECKER:
+    #         _redirec_port = ''
+    #         _redirec_host = ''
             
-            if BROKER_STATUS == Server.PRIMARY:
-                _redirec_port = 8085
-                _redirec_host = '3.84.150.189'
-            else:
-                _redirec_port = 8086
-                _redirec_host = '3.87.26.44'
+    #         if BROKER_STATUS == Server.PRIMARY:
+    #             _redirec_port = 8085
+    #             _redirec_host = '3.84.150.189'
+    #         else:
+    #             _redirec_port = 8086
+    #             _redirec_host = '3.87.26.44'
             
-            content = pickle.dumps([BROKER_STATUS, _redirec_host, _redirec_port])
-            print(f'current broker {BROKER_STATUS}')
-            # content = pickle.dumps([BROKER_STATUS, 'localhost', _redirec_port])
-            client.send(content)
-        else:
-            print('Assumindo Broker Primario')
-            BROKER_STATUS = Server.PRIMARY
+    #         content = pickle.dumps([BROKER_STATUS, _redirec_host, _redirec_port])
+    #         print(f'current broker {BROKER_STATUS}')
+    #         # content = pickle.dumps([BROKER_STATUS, 'localhost', _redirec_port])
+    #         client.send(content)
+    #     else:
+    #         print('Assumindo Broker Primario')
+    #         BROKER_STATUS = Server.PRIMARY
 
-        if BROKER_STATUS == Server.PRIMARY:
-            thread = threading.Thread(target=messageTreatment, args=[client])
-            thread.start()
+    #     if BROKER_STATUS == Server.PRIMARY:
+    #         thread = threading.Thread(target=messageTreatment, args=[client])
+    #         thread.start()
 
 
 
