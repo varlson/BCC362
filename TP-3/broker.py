@@ -10,7 +10,7 @@ def main(server_state, port, host):
     if server_state == Server.PRIMARY.value:
         BROKER_STATUS = Server.PRIMARY 
     else:
-        BROKER_STATUS = Server.SECONDARY.value
+        BROKER_STATUS = Server.SECONDARY
     
 
 
