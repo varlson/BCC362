@@ -14,21 +14,20 @@ FAILURE_TREATMENT = False
 
 CURRENT_PRIMARY_PORT = 8085
 CURRENT_SECONDARY_PORT = 8086
-HOST_1 = '172.31.85.58'
-HOST_2 = '172-31-95-243'
 
 
-def main(username, port,host):
+def main(username, port):
     global CONTROL
     global FAILURE_TREATMENT
     global REQ_COMPLETED
     CONTROL = True
+    host = 'localhost'
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         client.connect((host, port))
-    except Exception as e: 
-        return print(f'Houve problema na tentatia de conexao {e}')
+    except:
+        return print('Houve problema na tentatia de conexao')
     
 
     # username = input('\nNome do usuario> ')
@@ -70,7 +69,7 @@ def main(username, port,host):
         lock.release()
     REQ_COMPLETED = True
     FAILURE_TREATMENT = True
-    main(USERNAME, CURRENT_SECONDARY_PORT, HOST_2)
+    main(USERNAME, CURRENT_SECONDARY_PORT)
 
 
 
@@ -141,5 +140,5 @@ if __name__ == '__main__':
     USERNAME = None
     USERNAME= sys.argv[1]
     port = int(sys.argv[2])
-    host = sys.argv[3]
-    main(USERNAME, port,'172-31-95-243')
+    main('USERNAME', 8085)
+    # main(USERNAME, port)

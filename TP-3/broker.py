@@ -2,13 +2,9 @@
 import sys
 from utility import *
 
-HOST_1 = '172.31.85.58'
-HOST_2 = '172-31-95-243'
 
-PORT_1 = 8085
-PORT_2 = 8086
 
-def main(server_state, port=8080):
+def main(server_state, port, host):
 
     global BROKER_STATUS
     if server_state == Server.PRIMARY.value:
@@ -20,13 +16,7 @@ def main(server_state, port=8080):
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        _host =''
-        if BROKER_STATUS == Server.PRIMARY:
-            _host = HOST_1
-        else:
-            _host = HOST_2
-
-        server.bind((HOST_2, 8086))
+        server.bind((host, port))
         server.listen()
         print(f'Server online on port {port}')
     except socket.error as e:
@@ -48,16 +38,18 @@ def main(server_state, port=8080):
             thread.start()
         elif req == Checker.BROKER_CHECKER:
             _redirec_port = ''
-            _redirect_host
-            if BROKER_STATUS == Server.PRIMARY:
-                _redirec_port = PORT_1
-                _redirect_host = HOST_1
-            else:
-                _redirec_port = PORT_2 
-                _redirect_host = HOST_2
+            _redirec_host = ''
             
-            content = pickle.dumps([BROKER_STATUS, _redirect_host, _redirec_port])
-            content = pickle.dumps([BROKER_STATUS, _redirect_host, _redirec_port])
+            if BROKER_STATUS == Server.PRIMARY:
+                _redirec_port = 8085
+                _redirec_host = '3.84.150.189'
+            else:
+                _redirec_port = 8086
+                _redirec_host = '3.87.26.44'
+            
+            content = pickle.dumps([BROKER_STATUS, _redirec_host, _redirec_port])
+            print(f'current broker {BROKER_STATUS}')
+            # content = pickle.dumps([BROKER_STATUS, 'localhost', _redirec_port])
             client.send(content)
         else:
             print('Assumindo Broker Primario')
@@ -70,14 +62,9 @@ def main(server_state, port=8080):
 
 
 threading.Thread(target=managment_starter).start()
-port = int(sys.argv[1])
-server = int(sys.argv[2])
-# HOST_1 = '172.31.85.58'
-# HOST_2 = '172-31-95-243'
-# 
-# PORT_1 = 8085
-# PORT_2 = 8086
+# port = int(sys.argv[1])
+# server = int(sys.argv[2])
+# host = sys.argv[3]
 
-
-
-main(server, port)
+main(1, '8085', '172.31.85.58') # sevidor primario, porta, host
+# main(server, port, host) 
