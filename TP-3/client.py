@@ -12,16 +12,17 @@ REQ_COMPLETED = True
 lock = threading.Lock()
 FAILURE_TREATMENT = False
 
-CURRENT_PRIMARY_PORT = 8080
-CURRENT_SECONDARY_PORT = 8081
+CURRENT_PRIMARY_PORT = 8085
+CURRENT_SECONDARY_PORT = 8086
+HOST_1 = '172.31.85.58'
+HOST_2 = '172-31-95-243'
 
 
-def main(username, port):
+def main(username, port,host):
     global CONTROL
     global FAILURE_TREATMENT
     global REQ_COMPLETED
     CONTROL = True
-    host = 'localhost'
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
@@ -69,7 +70,7 @@ def main(username, port):
         lock.release()
     REQ_COMPLETED = True
     FAILURE_TREATMENT = True
-    main(USERNAME, CURRENT_SECONDARY_PORT)
+    main(USERNAME, CURRENT_SECONDARY_PORT, HOST_2)
 
 
 
@@ -140,4 +141,5 @@ if __name__ == '__main__':
     USERNAME = None
     USERNAME= sys.argv[1]
     port = int(sys.argv[2])
-    main(USERNAME, port)
+    host = int(sys.argv[3])
+    main(USERNAME, port,host)

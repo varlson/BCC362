@@ -2,7 +2,11 @@
 import sys
 from utility import *
 
+HOST_1 = '172.31.85.58'
+HOST_2 = '172-31-95-243'
 
+PORT_1 = 8085
+PORT_2 = 8086
 
 def main(server_state, port=8080):
 
@@ -38,15 +42,16 @@ def main(server_state, port=8080):
             thread.start()
         elif req == Checker.BROKER_CHECKER:
             _redirec_port = ''
-            
+            _redirect_host
             if BROKER_STATUS == Server.PRIMARY:
-                _redirec_port = 8080
+                _redirec_port = PORT_1
+                _redirect_host = HOST_1
             else:
-                _redirec_port = 8080 
+                _redirec_port = PORT_2 
+                _redirect_host = HOST_2
             
-            content = pickle.dumps([BROKER_STATUS, 'localhost', _redirec_port])
-            print(f'current broker {BROKER_STATUS}')
-            content = pickle.dumps([BROKER_STATUS, 'localhost', _redirec_port])
+            content = pickle.dumps([BROKER_STATUS, _redirect_host, _redirec_port])
+            content = pickle.dumps([BROKER_STATUS, _redirect_host, _redirec_port])
             client.send(content)
         else:
             print('Assumindo Broker Primario')
