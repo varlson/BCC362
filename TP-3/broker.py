@@ -16,7 +16,7 @@ def main(server_state, port, host):
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        server.bind((host, port))
+        server.bind(('172.31.95.243', 8086))
         server.listen()
         print(f'Server online on port {port}')
     except socket.error as e:
@@ -66,5 +66,5 @@ port = int(sys.argv[1])
 server = int(sys.argv[2])
 host = sys.argv[3]
 
-# main(1, 8086, '172-31-95-243') # sevidor primario, porta, host
-main(server, port, host) 
+main(1, 8086, '172-31-95-243') # sevidor primario, porta, host
+# main(server, port, host) 
