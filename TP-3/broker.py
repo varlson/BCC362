@@ -5,6 +5,7 @@ from utility import *
 
 
 def main(server_state, port, host):
+
     global BROKER_STATUS
     if server_state == Server.PRIMARY.value:
         BROKER_STATUS = Server.PRIMARY 
@@ -15,9 +16,7 @@ def main(server_state, port, host):
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        # print(f'dados {server, port, host}')
-        # # server.bind((host, port))
-        server.bind(('172-31-95-243', 8086))
+        server.bind(('172.31.95.243', 8086))
         server.listen()
         print(f'Server online on port {port}')
     except socket.error as e:
