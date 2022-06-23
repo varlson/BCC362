@@ -18,11 +18,11 @@ Requests =[]
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        server.bind(('54.152.190.48', 8080))
+        server.bind(('172-31-81-206', 8080))
         server.listen()
         print('Server online ')
-    except:
-        return print('Houve prolema na conexao')
+    except Exception as e:
+        return print(f'Houve prolema na conexao {e}')
         
     while True:
         client, addr = server.accept()

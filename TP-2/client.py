@@ -1,4 +1,3 @@
-from logging import exception
 import pickle
 from random import randint, uniform
 import sys
