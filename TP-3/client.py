@@ -27,8 +27,8 @@ def main(username, port,host):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         client.connect((host, port))
-    except:
-        return print('Houve problema na tentatia de conexao')
+    except Exception as e: 
+        return print(f'Houve problema na tentatia de conexao {e}')
     
 
     # username = input('\nNome do usuario> ')
@@ -141,5 +141,5 @@ if __name__ == '__main__':
     USERNAME = None
     USERNAME= sys.argv[1]
     port = int(sys.argv[2])
-    host = int(sys.argv[3])
+    host = sys.argv[3]
     main(USERNAME, port,host)

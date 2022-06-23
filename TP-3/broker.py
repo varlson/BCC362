@@ -20,7 +20,13 @@ def main(server_state, port=8080):
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
-        server.bind(('localhost', port))
+        _host =''
+        if BROKER_STATUS == Server.PRIMARY:
+            _host = HOST_1
+        else:
+            _host = HOST_2
+
+        server.bind((_host, port))
         server.listen()
         print(f'Server online on port {port}')
     except socket.error as e:
@@ -66,5 +72,12 @@ def main(server_state, port=8080):
 threading.Thread(target=managment_starter).start()
 port = int(sys.argv[1])
 server = int(sys.argv[2])
+# HOST_1 = '172.31.85.58'
+# HOST_2 = '172-31-95-243'
+# 
+# PORT_1 = 8085
+# PORT_2 = 8086
+
+
 
 main(server, port)
