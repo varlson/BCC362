@@ -37,11 +37,9 @@ def main():
 
 
 def managment_starter():
-    print('dentro')
     while True:
         if len(Requests) >=1:
             break
-        print('dentro')
         sleep(1)
     print('saiu')
     sheThread = threading.Timer(1, shered_resource_management)
