@@ -66,5 +66,5 @@ port = int(sys.argv[1])
 server = int(sys.argv[2])
 host = sys.argv[3]
 
-main(2, 8086, '172-31-95-243') # sevidor primario, porta, host
+main(1, 8086, '172-31-95-243') # sevidor primario, porta, host
 # main(server, port, host) 
