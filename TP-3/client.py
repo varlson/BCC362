@@ -140,5 +140,5 @@ if __name__ == '__main__':
     USERNAME= sys.argv[1]
     port = int(sys.argv[2])
     host = sys.argv[3]
-    main('USERNAME', 8085, host)
+    main(USERNAME, port, host)
     # main(USERNAME, port)
